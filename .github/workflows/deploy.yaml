@@ -10,9 +10,9 @@ jobs:
     steps:
     - uses: actions/checkout@v3
       with:
-        ref: main
-        path: main
-    - name: Build HTML for main
+        ref: hmo_documentation
+        path: hmo_documentation
+    - name: Build HTML for hmo_documentation
       run: | 
            wget -O widoco.jar https://github.com/dgarijo/Widoco/releases/download/v1.4.17/java-11-widoco-1.4.17-jar-with-dependencies.jar
            mkdir public 
