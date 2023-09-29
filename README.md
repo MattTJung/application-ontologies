@@ -1,3 +1,5 @@
+[![HTML](https://github.com/MattTJung/application-ontologies/actions/workflows/deploy.yaml/badge.svg)](https://github.com/MattTJung/application-ontologies/actions/workflows/deploy.yaml)
+
 # The PMD Application Ontologies (PMDao) official release repository
 
 This repository comprises domain and application ontologies developed and published within the frame of the joint project Platform MaterialDigital (PMD): [PMD website](https://materialdigital.de/).
