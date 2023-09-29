@@ -11,14 +11,19 @@ jobs:
     - uses: actions/checkout@v3
       with:
         ref: ${{ github.ref_name }}
-        path: main
+        path: deploy_checkout
     - name: Build HTML for hmo on ${{ github.ref_name }}
       run: | 
            wget -O widoco.jar https://github.com/dgarijo/Widoco/releases/download/v1.4.17/java-11-widoco-1.4.17-jar-with-dependencies.jar
-           mkdir public
-           mkdir public/hmo
-           java -jar widoco.jar -ontFile main/hardness_measurement_ontology_HMO/pmd_hmo.ttl -outFolder public/hmo -htaccess -uniteSections -includeAnnotationProperties -lang en-de  -getOntologyMetadata -noPlaceHolderText -rewriteAll -webVowl
+           mkdir -p public/hmo
+           java -jar widoco.jar -ontFile deploy_checkout/hardness_measurement_ontology_HMO/pmd_hmo.ttl -outFolder public/hmo -htaccess -uniteSections -includeAnnotationProperties -lang en-de  -getOntologyMetadata -noPlaceHolderText -rewriteAll -webVowl
            cp public/hmo/index-en.html public/hmo/index.html
+    - name: Build HTML for tto on ${{ github.ref_name }}
+      run: | 
+           wget -O widoco.jar https://github.com/dgarijo/Widoco/releases/download/v1.4.17/java-11-widoco-1.4.17-jar-with-dependencies.jar
+           mkdir -p public/tto
+           java -jar widoco.jar -ontFile deploy_checkout/tensile_test_ontology_TTO/pmd_tto.ttl -outFolder public/tto -htaccess -uniteSections -includeAnnotationProperties -lang en-de  -getOntologyMetadata -noPlaceHolderText -rewriteAll -webVowl
+           cp public/tto/index-en.html public/tto/index.html
     - name: Deploy to GitHub Pages
       if: success()
       uses: crazy-max/ghaction-github-pages@v3
