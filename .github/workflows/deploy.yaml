@@ -10,14 +10,14 @@ jobs:
     steps:
     - uses: actions/checkout@v3
       with:
-        ref: hmo_documentation
-        path: hmo_documentation
-    - name: Build HTML for hmo_documentation
+        ref: $GITHUB_REF_NAME
+        path: main
+    - name: Build HTML for hmo on $GITHUB_REF_NAME
       run: | 
            wget -O widoco.jar https://github.com/dgarijo/Widoco/releases/download/v1.4.17/java-11-widoco-1.4.17-jar-with-dependencies.jar
            mkdir public
            mkdir public/hmo
-           java -jar widoco.jar -ontFile hmo_documentation/hardness_measurement_ontology_HMO/pmd_hmo.ttl -outFolder public/hmo -htaccess -uniteSections -includeAnnotationProperties -lang en-de  -getOntologyMetadata -noPlaceHolderText -rewriteAll -webVowl
+           java -jar widoco.jar -ontFile main/hardness_measurement_ontology_HMO/pmd_hmo.ttl -outFolder public/hmo -htaccess -uniteSections -includeAnnotationProperties -lang en-de  -getOntologyMetadata -noPlaceHolderText -rewriteAll -webVowl
            cp public/hmo/index-en.html public/hmo/index.html
     - name: Deploy to GitHub Pages
       if: success()
