@@ -17,7 +17,7 @@ jobs:
            wget -O widoco.jar https://github.com/dgarijo/Widoco/releases/download/v1.4.17/java-11-widoco-1.4.17-jar-with-dependencies.jar
            mkdir public 
            java -jar widoco.jar -ontFile hmo_documentation/hardness_measurement_ontology_HMO/pmd_hmo.ttl -outFolder public -htaccess -uniteSections -includeAnnotationProperties -lang en-de  -getOntologyMetadata -noPlaceHolderText -rewriteAll -webVowl
-           cp public/index-en.html public/hmo/index.html
+           cp public/index-en.html public/index.html
     - name: Deploy to GitHub Pages
       if: success()
       uses: crazy-max/ghaction-github-pages@v3
