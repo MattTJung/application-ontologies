@@ -80,7 +80,7 @@ qudt:MilliM rdf:type owl:NamedIndividual ;
 :TensileTestSpecimen_1_InitialMeasuringLength_value_specification rdf:type owl:NamedIndividual ,
                                                                            obo:OBI_0001931 ;
                                                                   obo:IAO_0000039 :unit_mm ;
-                                                                  obo:OBI_0001937 "25.0"^^xsd:float .
+                                                           obo:OBI_0001937 "25.0"^^xsd:float .
 
 
 ###  https://w3id.org/pmd/tto_ex/TensileTestSpecimen_1_role
