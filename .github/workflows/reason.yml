@@ -25,7 +25,7 @@ jobs:
       - name: Validate against SHACL shapes
         run: |
              curl -L -o robot.jar "https://github.com/ontodev/robot/releases/latest/download/robot.jar"
-             java -jar robot.jar merge --input main/tensile_test_ontology_TTO/pmd_tto_aboxexample.ttl --output pmd_tto_aboxexample-merged.ttl
+             java -jar robot.jar merge --input main/tensile_test_ontology_TTO/pmd_tto_aboxexample.ttl --input main/tensile_test_ontology_TTO/pmd_tto.ttl --input main/tensile_test_ontology_TTO/pmd_co_static.ttl --output pmd_tto_aboxexample-merged.ttl
              java -jar robot.jar reason --reasoner elk --input pmd_tto_aboxexample-merged.ttl --output pmd_tto_aboxexample-reasoned.ttl
       - name: Archive reason artifacts
         uses: actions/upload-artifact@v4
