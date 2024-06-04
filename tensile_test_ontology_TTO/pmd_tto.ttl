@@ -8,7 +8,7 @@
 
 <https://w3id.org/pmd/tto> rdf:type owl:Ontology ;
                             owl:versionIRI <https://w3id.org/pmd/tto/3.0.0> ;
-                            owl:imports <https://w3id.org/pmd/co> ;
+                            owl:imports "https://raw.githubusercontent.com/MattTJung/application-ontologies/develop_tto-3.0.0/tensile_test_ontology_TTO/co/pmd_co_static.ttl" ;
                             <http://purl.org/dc/elements/1.1/contributor> <https://orcid.org/0000-0003-0086-5808> ;
                             <http://purl.org/dc/elements/1.1/creator> <https://orcid.org/0000-0001-7192-7143> ,
                                                                       <https://orcid.org/0000-0002-3717-7104> ,
