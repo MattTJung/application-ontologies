@@ -1,0 +1,3 @@
+[submodule "tensile_test_ontology_TTO/core-ontology"]
+	path = tensile_test_ontology_TTO/core-ontology
+	url = git@github.com:materialdigital/core-ontology.git
