@@ -1,24 +1,28 @@
 @prefix : <https://w3id.org/pmd/tto/> .
+@prefix dc: <http://purl.org/dc/elements/1.1/> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix pmd: <https://w3id.org/pmd/co/> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix xml: <http://www.w3.org/XML/1998/namespace> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
 @base <https://w3id.org/pmd/tto/> .
 
 <https://w3id.org/pmd/tto> rdf:type owl:Ontology ;
                             owl:versionIRI <https://w3id.org/pmd/tto/3.0.0> ;
-                            owl:imports "https://raw.githubusercontent.com/MattTJung/application-ontologies/develop_tto-3.0.0/tensile_test_ontology_TTO/co/pmd_co_static.ttl" ;
-                            <http://purl.org/dc/elements/1.1/contributor> <https://orcid.org/0000-0003-0086-5808> ;
-                            <http://purl.org/dc/elements/1.1/creator> <https://orcid.org/0000-0001-7192-7143> ,
-                                                                      <https://orcid.org/0000-0002-3717-7104> ,
-                                                                      <https://orcid.org/0000-0002-7094-5371> ,
-                                                                      <https://orcid.org/0000-0002-9014-2920> ,
-                                                                      <https://orcid.org/0000-0003-4971-3645> ;
-                            <http://purl.org/dc/elements/1.1/license> <http://creativecommons.org/licenses/by/4.0/> ;
-                            <http://purl.org/dc/terms/bibliographicCitation> "TODO: Markus Schilling, Bernd Bayerlein, Henk Birkholz, Philipp von Hartrott, Jörg Waitelonis. (July 14th, 2023) TTO: Tensile Test Ontology. Version 2.0.0, https://w3id.org/pmd/tto"@en ;
-                            <http://purl.org/dc/terms/created> "2024-06-04"^^xsd:date ;
-                            <http://purl.org/dc/terms/title> "Tensile Test Ontology (TTO)"@en ;
+                            owl:imports <https://w3id.org/pmd/co/3.0.0> ;
+                            dc:contributor <https://orcid.org/0000-0003-0086-5808> ;
+                            dc:creator <https://orcid.org/0000-0001-7192-7143> ,
+                                       <https://orcid.org/0000-0002-3717-7104> ,
+                                       <https://orcid.org/0000-0002-7094-5371> ,
+                                       <https://orcid.org/0000-0002-9014-2920> ,
+                                       <https://orcid.org/0000-0003-4971-3645> ;
+                            dc:license <http://creativecommons.org/licenses/by/4.0/> ;
+                            dcterms:bibliographicCitation "TODO: Markus Schilling, Bernd Bayerlein, Henk Birkholz, Philipp von Hartrott, Jörg Waitelonis. (July 14th, 2023) TTO: Tensile Test Ontology. Version 2.0.0, https://w3id.org/pmd/tto"@en ;
+                            dcterms:created "2024-06-04"^^xsd:date ;
+                            dcterms:title "Tensile Test Ontology (TTO)"@en ;
                             rdfs:comment """TODO: This is the stable version of the PMD ontology of the tensile test (Tensile Test Ontology - TTO) as developed on the basis of the standard ISO 6892-1: Metallic materials - Tensile Testing - Part 1: Method of test at room temperature.
 
 The TTO was developed in the frame of the PMD project. The TTO provides conceptualizations valid for the description of tensile tests and corresponding data in accordance with the respective standard. By using TTO for storing tensile test data, all data will be well structured and based on a common vocabulary agreed on by an expert group (generation of FAIR data) which will lead to enhanced data interoperability. This comprises several data categories such as primary data, secondary data and metadata. Data will be human and machine readable. The usage of TTO facilitates data retrieval and downstream usage. Due to a close connection to the PMD core ontology (PMDco), the interoperability of tensile test data is enhanced and querying in combination with other aspects and data within the broad field of material science and engineering (MSE) is facilitated.
@@ -44,28 +48,37 @@ TTO of PMD at GitHub: https://github.com/materialdigital/application-ontologies/
 <http://purl.obolibrary.org/obo/BFO_0000030> rdf:type owl:Class .
 
 
+###  https://w3id.org/pmd/co/ForceMeasuringSystem
+pmd:ForceMeasuringSystem rdf:type owl:Class ;
+                         rdfs:subClassOf pmd:MeasuringDevice .
+
+
 ###  https://w3id.org/pmd/co/Shape2D
-<https://w3id.org/pmd/co/Shape2D> rdf:type owl:Class .
+pmd:Shape2D rdf:type owl:Class .
 
 
 ###  https://w3id.org/pmd/tto/InitialDiameter
 :InitialDiameter rdf:type owl:Class ;
-                 rdfs:subClassOf <https://w3id.org/pmd/co/Diameter> ;
+                 rdfs:subClassOf pmd:Diameter ;
+                 <http://purl.obolibrary.org/obo/IAO_0000114> <http://purl.obolibrary.org/obo/IAO_0000428> ;
                  <http://purl.obolibrary.org/obo/IAO_0000117> "PERSON: Markus Schilling" ,
                                                               "PERSON: Matthias Jung" ;
                  rdfs:label "Anfangsdurchmesser"@de ,
                             "Initial Diameter"@en ;
-                 <http://www.w3.org/2004/02/skos/core#prefLabel> "Anfangsdurchmesser"@en ,
-                                                                 "Initial Diameter"@en .
+                 skos:definition "TODO" ;
+                 skos:prefLabel "Anfangsdurchmesser"@en ,
+                                "Initial Diameter"@en .
 
 
 ###  https://w3id.org/pmd/tto/InitialMeasuringLength
 :InitialMeasuringLength rdf:type owl:Class ;
-                        rdfs:subClassOf <https://w3id.org/pmd/co/Length> ;
+                        rdfs:subClassOf pmd:Length ;
+                        <http://purl.obolibrary.org/obo/IAO_0000114> <http://purl.obolibrary.org/obo/IAO_0000428> ;
                         <http://purl.obolibrary.org/obo/IAO_0000117> "PERSON: Markus Schilling"@de ,
                                                                      "PERSON: Matthias Jung"@de ;
                         rdfs:label "Anfangsmesslaenge"@de ,
-                                   "Initial Measuring Length"@en .
+                                   "Initial Measuring Length"@en ;
+                        skos:definition "TODO" .
 
 
 ###  https://w3id.org/pmd/tto/RoundTensileTestSpecimen
@@ -83,14 +96,15 @@ TTO of PMD at GitHub: https://github.com/materialdigital/application-ontologies/
                                               ] ,
                                               [ rdf:type owl:Restriction ;
                                                 owl:onProperty <http://purl.obolibrary.org/obo/RO_0000086> ;
-                                                owl:someValuesFrom <https://w3id.org/pmd/co/Circular>
+                                                owl:someValuesFrom pmd:Circular
                                               ] ;
                           rdfs:subClassOf :TensileTestSpecimen ;
+                          <http://purl.obolibrary.org/obo/IAO_0000114> <http://purl.obolibrary.org/obo/IAO_0000428> ;
                           <http://purl.obolibrary.org/obo/IAO_0000117> "PERSON: Markus Schilling"@de ,
                                                                        "PERSON: Matthias Jung"@de ;
                           <http://purl.obolibrary.org/obo/IAO_0000119> "TODO"@en ;
                           rdfs:isDefinedBy "https://w3id.org/pmd/tto" ;
-                          <http://www.w3.org/2004/02/skos/core#definition> "TODO"@en .
+                          skos:definition "TODO"@en .
 
 
 ###  https://w3id.org/pmd/tto/TensileTestSpecimen
@@ -98,11 +112,11 @@ TTO of PMD at GitHub: https://github.com/materialdigital/application-ontologies/
                      owl:equivalentClass [ owl:intersectionOf ( <http://purl.obolibrary.org/obo/BFO_0000030>
                                                                 [ rdf:type owl:Restriction ;
                                                                   owl:onProperty <http://purl.obolibrary.org/obo/RO_0000086> ;
-                                                                  owl:someValuesFrom <https://w3id.org/pmd/co/Shape2D>
+                                                                  owl:someValuesFrom pmd:Shape2D
                                                                 ]
                                                                 [ rdf:type owl:Restriction ;
                                                                   owl:onProperty <http://purl.obolibrary.org/obo/RO_0000087> ;
-                                                                  owl:someValuesFrom <https://w3id.org/pmd/co/TestPiece>
+                                                                  owl:someValuesFrom pmd:TestPiece
                                                                 ]
                                                               ) ;
                                            rdf:type owl:Class
@@ -114,8 +128,93 @@ TTO of PMD at GitHub: https://github.com/materialdigital/application-ontologies/
                      <http://purl.obolibrary.org/obo/IAO_0000119> "TODO"@en ;
                      rdfs:isDefinedBy "https://w3id.org/pmd/tto" ;
                      rdfs:label "Tensile Test Specimen"@en ;
-                     <http://www.w3.org/2004/02/skos/core#definition> "TODO"@en ;
-                     <http://www.w3.org/2004/02/skos/core#prefLabel> "Tensile Test Specimen"@en .
+                     skos:definition "TODO"@en ;
+                     skos:prefLabel "Tensile Test Specimen"@en .
+
+
+###  https://w3id.org/pmd/tto/TensileTestingMachine
+:TensileTestingMachine rdf:type owl:Class ;
+                       owl:equivalentClass [ owl:intersectionOf ( pmd:TestingMachine
+                                                                  [ owl:intersectionOf ( [ rdf:type owl:Restriction ;
+                                                                                           owl:onProperty <http://purl.obolibrary.org/obo/RO_0002180> ;
+                                                                                           owl:someValuesFrom pmd:Extensometer
+                                                                                         ]
+                                                                                         [ rdf:type owl:Restriction ;
+                                                                                           owl:onProperty <http://purl.obolibrary.org/obo/RO_0002180> ;
+                                                                                           owl:someValuesFrom pmd:ForceMeasuringSystem
+                                                                                         ]
+                                                                                       ) ;
+                                                                    rdf:type owl:Class
+                                                                  ]
+                                                                ) ;
+                                             rdf:type owl:Class
+                                           ] ;
+                       rdfs:subClassOf pmd:TestingMachine ;
+                       <http://purl.obolibrary.org/obo/IAO_0000114> <http://purl.obolibrary.org/obo/IAO_0000428> ;
+                       <http://purl.obolibrary.org/obo/IAO_0000117> "PERSON: Markus Schilling"@en ,
+                                                                    "PERSON: Matthias Jung"@en ,
+                                                                    "" ;
+                       <http://purl.obolibrary.org/obo/IAO_0000119> "DIN EN ISO 6892-1:2020-06"@en ;
+                       rdfs:isDefinedBy <https://w3id.org/pmd/tto> ;
+                       rdfs:label "Tensile Testing Machine"@en ,
+                                  "Zugprüfmaschine"@de ;
+                       skos:definition "Maschine zur Durchführung eines Zugversuches; die Regelung und Überwachung des Versuches, die Messungen und die Datenverarbeitung werden üblicherweise mithilfe eines Computers durchgeführt."@de ,
+                                       "machine to conduct a tensile test; the control and monitoring of the test, the measurements, and the data processing are usually undertaken by computer"@en .
+
+
+###  https://w3id.org/pmd/tto/TensileTestingMachineISO6892-1
+:TensileTestingMachineISO6892-1 rdf:type owl:Class ;
+                                owl:equivalentClass [ owl:intersectionOf ( :TensileTestingMachine
+                                                                           [ rdf:type owl:Restriction ;
+                                                                             owl:onProperty <http://purl.obolibrary.org/obo/RO_0002180> ;
+                                                                             owl:someValuesFrom [ owl:intersectionOf ( pmd:Extensometer
+                                                                                                                       [ rdf:type owl:Restriction ;
+                                                                                                                         owl:onProperty <http://purl.obolibrary.org/obo/IAO_0000235> ;
+                                                                                                                         owl:hasValue :ISO9513_2012
+                                                                                                                       ]
+                                                                                                                     ) ;
+                                                                                                  rdf:type owl:Class
+                                                                                                ]
+                                                                           ]
+                                                                           [ rdf:type owl:Restriction ;
+                                                                             owl:onProperty <http://purl.obolibrary.org/obo/RO_0002180> ;
+                                                                             owl:someValuesFrom [ owl:intersectionOf ( pmd:ForceMeasuringSystem
+                                                                                                                       [ rdf:type owl:Restriction ;
+                                                                                                                         owl:onProperty <http://purl.obolibrary.org/obo/IAO_0000235> ;
+                                                                                                                         owl:hasValue :ISO7500-1_2018
+                                                                                                                       ]
+                                                                                                                     ) ;
+                                                                                                  rdf:type owl:Class
+                                                                                                ]
+                                                                           ]
+                                                                         ) ;
+                                                      rdf:type owl:Class
+                                                    ] ;
+                                rdfs:subClassOf :TensileTestingMachine ;
+                                <http://purl.obolibrary.org/obo/IAO_0000117> "PERSON: Markus Schilling"@en ,
+                                                                             "PERSON: Matthias Jung"@en ,
+                                                                             "" ;
+                                <http://purl.obolibrary.org/obo/IAO_0000119> "DIN EN ISO 6892-1:2020-06"@en ;
+                                skos:definition """Maschine zur Durchführung eines Zugversuches; die Regelung und Überwachung des Versuches, die Messungen und die Datenverarbeitung werden üblicherweise mithilfe eines Computers durchgeführt.
+Die Kraftmesseinrichtung erfüllt Klasse 1 nach ISO 7500-1. Das Extensometer erfüllt Klasse 1 (Klasse 2 bei Bestimmung von Kennwerten bei Extensometer-Dehnungen größer als 5%) nach ISO 9513."""@de ,
+                                                """machine to conduct a tensile test; the control and monitoring of the test, the measurements, and the data processing are usually undertaken by computer
+The force-measuring system of the testing machine is in accordance with ISO 7500-1, class 1, or better. The extensometer used is in accordance with ISO 9513, class 1 or better, in the relevant range. For other properties (with extensions greater than 5 %), an ISO 9513, class 2 extensometer in the relevant range is used."""@en .
+
+
+#################################################################
+#    Individuals
+#################################################################
+
+###  https://w3id.org/pmd/tto/ISO7500-1_2018
+:ISO7500-1_2018 rdf:type owl:NamedIndividual ,
+                         <http://purl.obolibrary.org/obo/OBI_0500024> ;
+                <http://purl.obolibrary.org/obo/IAO_0000114> <http://purl.obolibrary.org/obo/IAO_0000123> .
+
+
+###  https://w3id.org/pmd/tto/ISO9513_2012
+:ISO9513_2012 rdf:type owl:NamedIndividual ,
+                       <http://purl.obolibrary.org/obo/OBI_0500024> ;
+              <http://purl.obolibrary.org/obo/IAO_0000114> <http://purl.obolibrary.org/obo/IAO_0000123> .
 
 
 ###  Generated by the OWL API (version 4.5.26.2023-07-17T20:34:13Z) https://github.com/owlcs/owlapi
