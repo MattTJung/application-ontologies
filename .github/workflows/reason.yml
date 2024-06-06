@@ -25,7 +25,7 @@ jobs:
       - name: robot test
         run: |
              curl -L -o robot.jar "https://github.com/ontodev/robot/releases/latest/download/robot.jar"
-             java -vv -jar robot.jar merge --input main/tensile_test_ontology_TTO/pmd_tto_aboxexample.ttl --output pmd_tto_aboxexample-merged-test.ttl
+             java -jar robot.jar merge -vv --input main/tensile_test_ontology_TTO/pmd_tto_aboxexample.ttl --output pmd_tto_aboxexample-merged-test.ttl
       - name: Archive test artifacts
         uses: actions/upload-artifact@v4
         with:
