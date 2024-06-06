@@ -22,33 +22,22 @@ jobs:
         with:
           ref: develop_tto-3.0.0
           path: main
-      - name: robot test
+      - name: Merge ontologies
         run: |
              curl -L -o robot.jar "https://github.com/ontodev/robot/releases/latest/download/robot.jar"
-             java -jar robot.jar merge -vv --input main/tensile_test_ontology_TTO/pmd_tto_aboxexample.ttl --output pmd_tto_aboxexample-merged-test.ttl
-      - name: Archive test artifacts
+             java -jar robot.jar merge -vv --input main/tensile_test_ontology_TTO/pmd_tto_aboxexample.ttl --output pmd_tto_aboxexample-merged.ttl
+      - name: Archive merged ontology
         uses: actions/upload-artifact@v4
         with:
-          name: pmd_tto_aboxexample-test
+          name: pmd_tto_aboxexample-merged
           path: |
-            pmd_tto_aboxexample-merged-test.ttl
+            pmd_tto_aboxexample-merged.ttl
       - name: Validate against SHACL shapes
         run: |
-             curl -L -o robot.jar "https://github.com/ontodev/robot/releases/latest/download/robot.jar"
-             curl -L -o pmd-core.ttl "https://raw.githubusercontent.com/materialdigital/core-ontology/develop-3.0.0/pmd-core.ttl"
-             curl -L -o pmd-qualities.ttl "https://raw.githubusercontent.com/materialdigital/core-ontology/develop-3.0.0/modules/pmdco-qualities.ttl"
-             curl -L -o pmdco-materials.ttl "https://raw.githubusercontent.com/materialdigital/core-ontology/develop-3.0.0/modules/pmdco-materials.ttl"
-             curl -L -o pmdco-manufacturing.ttl "https://raw.githubusercontent.com/materialdigital/core-ontology/develop-3.0.0/modules/pmdco-manufacturing.ttl"
-             curl -L -o pmdco-logistics.ttl "https://raw.githubusercontent.com/materialdigital/core-ontology/develop-3.0.0/modules/pmdco-logistics.ttl"
-             curl -L -o pmdco-devices.ttl "https://raw.githubusercontent.com/materialdigital/core-ontology/develop-3.0.0/modules/pmdco-devices.ttl"
-             curl -L -o pmdco-datatransformation.ttl "https://raw.githubusercontent.com/materialdigital/core-ontology/develop-3.0.0/modules/pmdco-datatransformation.ttl"
-             curl -L -o pmdco-characterization.ttl "https://raw.githubusercontent.com/materialdigital/core-ontology/develop-3.0.0/modules/pmdco-characterization.ttl"
-             java -jar robot.jar merge --input main/tensile_test_ontology_TTO/pmd_tto_aboxexample.ttl --input main/tensile_test_ontology_TTO/pmd_tto.ttl --input pmd-core.ttl --input pmdco-characterization.ttl --input pmdco-datatransformation.ttl --input pmdco-devices.ttl --input pmdco-logistics.ttl --input pmdco-manufacturing.ttl --input pmdco-materials.ttl --input pmd-qualities.ttl --output pmd_tto_aboxexample-merged.ttl
-             java -jar robot.jar reason --reasoner elk --input pmd_tto_aboxexample-merged.ttl --output pmd_tto_aboxexample-reasoned.ttl
+             java -jar robot.jar reason -vv --reasoner elk --input pmd_tto_aboxexample-merged.ttl --output pmd_tto_aboxexample-reasoned.ttl
       - name: Archive reason artifacts
         uses: actions/upload-artifact@v4
         with:
           name: pmd_tto_aboxexample-reasoned
           path: |
             pmd_tto_aboxexample-reasoned.ttl
-            pmd_tto_aboxexample-merged.ttl
